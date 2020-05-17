@@ -136,7 +136,7 @@ body {
   background: #ffffff;
   color: #423338;
   font-size: 16px;
-  font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 24px;
   cursor: default;
   -webkit-font-smoothing: antialiased;
@@ -2609,9 +2609,14 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 
 #main-wrapper .all-menu-details .details h6 {
+  color: #e00000;
   padding: 5px 0 10px 0;
   margin: 0;
   font-size: 20px;
+}
+
+#main-wrapper .all-menu-details .details h6 a {
+    color: #e00000;
 }
 
 #main-wrapper .all-menu-details .details h6:hover a {

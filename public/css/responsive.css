@@ -111,7 +111,7 @@
  	/***************************************************/
 
 	#main-wrapper .all-menu-details .right-checkout .price-option button:before {
-		font-family: 'FontAwesome';
+		font-family: 'Open Sans';
 		content: "\f107";
 		position: absolute;
 		top: 7px;
@@ -127,7 +127,7 @@
 	}
 
 	#main-wrapper .all-menu-details .right-checkout .price-option button.active:before {
-		font-family: 'FontAwesome';
+		font-family: 'Open Sans';
 		content: "\f106";
 		position: absolute;
 		top: 7px;
