@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 <head>
     <meta charset="utf-8">
@@ -29,7 +29,7 @@
             <div class="container">
                 <div id="thumb-slide">
                     <div id="thumb-slide-section" class="owl-carousel" role="tablist">
-                        @foreach(\App\Category::all() as $category)
+                        @foreach($categories as $category)
                             <div class="item">
                                 <a href="#tab-{{ $category->id }}" role="tab" data-toggle="tab">
                                     @if(!empty($category->image))
@@ -54,7 +54,9 @@
                 <div class="col-md-12 col-sm-12">
                     <!-- end view-style -->
                     <div class="tab-content">
-                        @foreach(\App\Category::all() as $category)
+                        <a href="{{ route('basket.index') }}"><i class="fa fa-shopping-cart"></i> Sepetim ({{ session('cart') ? count(session('cart')) : 0 }} ürün)</a>
+                        @include('notifications.success')
+                        @foreach($categories as $category)
                             <div class="tab-pane fade @if($loop->iteration == 1) in active @endif" id="tab-{{ $category->id }}">
                                 <div class="all-menu-details">
                                     <h5>{{ $category->name }}</h5>
@@ -86,10 +88,12 @@
                                                     <!-- end .price-option-->
                                                     <div class="qty-cart text-center">
 {{--                                                        <h6>Porsiyon</h6>--}}
-                                                        <form class="default-form">
+                                                        <form class="default-form" action="{{ route('basket.store') }}" method="POST">
+                                                            @csrf
                                                             <label for="quantity">Porsiyon</label>
-                                                            <input type="number" step="0.5" placeholder="1" value="1" id="quantity">
-                                                            <button>
+                                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                            <input type="number" step="0.5" placeholder="1" value="1" id="quantity" name="quantity">
+                                                            <button type="submit">
                                                                 <i class="fa fa-shopping-cart"></i>
                                                             </button>
                                                         </form>

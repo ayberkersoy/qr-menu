@@ -341,7 +341,7 @@
 	------------------------------------------------------------------------- */
 
 	// LIGHTBOX STRINGS SETUP
-	
+
 	// FUNCTION
 	$.fn.uouInitLightboxes = function(){
 		if ( $.fn.magnificPopup ) {
@@ -399,10 +399,10 @@
 
 	};
 
-	
-	
 
-	
+
+
+
 	/* -------------------------------------------------------------------------
 		TOGGLE
 	------------------------------------------------------------------------- */
@@ -606,14 +606,14 @@ $(document).ready(function(){
 
 		});
 
-		
-		
+
+
 
 	});
 
 
 
-	
+
 
 	/* -------------------------------------------------------------------------
 		BANNER SEARCH
@@ -651,7 +651,7 @@ $(document).ready(function(){
 
 ----------------------------------------------------------------------------- */
 
-	
+
 
 	/* -------------------------------------------------------------------------
 		CONTACT FORM
@@ -661,9 +661,9 @@ $(document).ready(function(){
 		$(this).uouContactForm();
 	});
 
-	
 
-	
+
+
 	// SEARCH TYPE
 	$( '.properties-search-type' ).each(function(){
 
@@ -711,7 +711,7 @@ $(document).ready(function(){
 		}
 	});
 
-	
+
 
 
 /* -----------------------------------------------------------------------------
@@ -885,7 +885,7 @@ $(document).ready(function(){
 	}
 	// STYLE SWITCHER END
 
-	// view swticher 
+	// view swticher
 		$('.thumb-view').addClass('active');
 	$('.list-grid-view button').on('click',function(e) {
 		if ($(this).hasClass('thumb-view')) {
@@ -922,7 +922,7 @@ $(document).ready(function(){
 		$(this).toggleClass("active");
 		$(this).parent().parent().next()
 			.slideToggle(300);
-		
+
 
 		$(this).parent().parent()
 			.toggleClass('red');
@@ -970,13 +970,13 @@ $(document).ready(function(){
 	//qty cart option
 	$('.qty-cart button').click(function(e){
 		$(this).toggleClass('active');
-		e.preventDefault();
+		// e.preventDefault();
 	});
 
 
 
 
-	// thumbnail slide section 
+	// thumbnail slide section
 	var owl = $("#thumb-slide-section");
 	owl.owlCarousel({
 		itemsCustom: [
@@ -992,7 +992,7 @@ $(document).ready(function(){
 		navigation: true
 	});
 
-	// home page second slide 
+	// home page second slide
 
 	$("#slide-content").owlCarousel({
 		autoPlay: 4000,
@@ -1015,11 +1015,11 @@ $(document).ready(function(){
 			$('#map_canvas').gmap('openInfoWindow', {'content': 'TakeAway'}, this);
 		});
 		$('#map_canvas').gmap('option', 'zoom', 14);
-	
+
 	});
 
 
-	
+
 
 /* END. */
 });
