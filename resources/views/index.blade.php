@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 <head>
     <meta charset="utf-8">
@@ -54,11 +54,8 @@
                 <div class="col-md-12 col-sm-12">
                     <!-- end view-style -->
                     <div class="tab-content">
-                        @if(session('success'))
-                            <div class="alert alert-success">
-                                <p>{{ session('success') }} <a href="{{ route('basket.index') }}">Sepete git.</a></p>
-                            </div>
-                        @endif
+                        <a href="{{ route('basket.index') }}"><i class="fa fa-shopping-cart"></i> Sepetim ({{ session('cart') ? count(session('cart')) : 0 }} ürün)</a>
+                        @include('notifications.success')
                         @foreach($categories as $category)
                             <div class="tab-pane fade @if($loop->iteration == 1) in active @endif" id="tab-{{ $category->id }}">
                                 <div class="all-menu-details">
