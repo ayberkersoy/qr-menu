@@ -48,8 +48,31 @@ class BasketController extends Controller
             "price" => $product->price
         ];
         session()->put('cart', $cart);
-//        dd($cart);
 
         return redirect()->back()->with('success', 'Sepete eklendi.');
+    }
+
+    public function update(Request $request)
+    {
+        if($request->product_id and $request->quantity)
+        {
+            $cart = session()->get('cart');
+            $cart[$request->product_id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+        }
+
+        return back()->with('success', 'Sepetiniz güncellendi.');
+    }
+
+    public function destroy(Request $request)
+    {
+        if($request->product_id) {
+            $cart = session()->get('cart');
+            if(isset($cart[$request->product_id])) {
+                unset($cart[$request->product_id]);
+                session()->put('cart', $cart);
+            }
+        }
+        return back()->with('success', 'Sepetiniz güncellendi.');
     }
 }

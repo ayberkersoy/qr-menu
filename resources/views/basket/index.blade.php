@@ -10,7 +10,9 @@
 {{--                    <a href="{{ route('basket.index') }}"><i class="fa fa-shopping-cart"></i> Sepetim ({{ session('cart') ? count(session('cart')) : 0 }} ürün)</a>--}}
                     @include('notifications.success')
                     @if(session('cart'))
+                        <?php $total = 0 ?>
                         @foreach(session('cart') as $id => $details)
+                            <?php $total += $details['price'] * $details['quantity'] ?>
                             <div class="tab-pane fade in active" id="tab-{{ $id }}">
                                 <div class="all-menu-details menu-with-2grid thumb">
 {{--                                    <h5>{{ $details['name'] }}</h5>--}}
@@ -22,27 +24,28 @@
                                                         <div class="details">
                                                             <h6>
                                                                 <a href="#">{{ $details['name'] }}</a>
-                                                                <span style="float: right">₺{{ $details['price'] }}</span>
+                                                                <span style="float: right;">₺{{ $details['price'] * $details['quantity'] }}</span>
                                                             </h6>
-{{--                                                            <p class="m-with-details"><strong>Açıklama:</strong><br>{{ $product->description }}</p>--}}
-
-{{--                                                            <p class="for-list">{{ $product->description }}</p>--}}
                                                         </div>
-
-                                                    {{--                                                    <div class="price-option fl">--}}
-                                                    {{--                                                        <h4></h4>--}}
-                                                    {{--                                                <button class="toggle">Option</button>--}}
-                                                    {{--                                                    </div>--}}
-                                                    <!-- end .price-option-->
                                                         <div class="qty-cart text-center">
-                                                            {{--                                                        <h6>Porsiyon</h6>--}}
-                                                            <form class="default-form" action="{{ route('basket.store') }}" method="POST">
+                                                            <form class="default-form" action="{{ route('basket.update', $id) }}" method="POST">
+                                                                @method('PATCH')
                                                                 @csrf
                                                                 <label for="quantity">Porsiyon</label>
-                                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                                <input type="number" step="0.5" placeholder="1" value="1" id="quantity" name="quantity">
+                                                                <input type="hidden" name="product_id" value="{{ $id }}">
+                                                                <input type="number" step="0.5" placeholder="1" value="{{ $details['quantity'] }}" id="quantity" name="quantity">
                                                                 <button type="submit">
-                                                                    <i class="fa fa-shopping-cart"></i>
+                                                                    <i class="fa fa-refresh"></i>
+                                                                </button>
+                                                            </form>
+                                                            <form class="default-form" action="{{ route('basket.destroy', $id) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+{{--                                                                <label for="quantity">Porsiyon</label>--}}
+                                                                <input type="hidden" name="product_id" value="{{ $id }}">
+{{--                                                                <input type="number" step="0.5" placeholder="1" value="1" id="quantity" name="quantity">--}}
+                                                                <button type="submit" onclick="confirm('Emin misiniz?')">
+                                                                    <i class="fa fa-trash-o"></i>
                                                                 </button>
                                                             </form>
                                                         </div> <!-- end .qty-cart -->
@@ -59,6 +62,18 @@
 
                             </div> <!-- end .tab-pane -->
                         @endforeach
+                        <form action="{{ route('order.store') }}" method="POST" style="margin-top: 20px;">
+                            @csrf
+                            <p><strong>Toplam: </strong> ₺{{ $total }}</p>
+                            <label for="table_no">Masa Numarası</label>
+                            <input type="text" name="table_no" id="table_no">
+                            <br>
+                            <button type="submit">
+                                Sipariş Ver
+                            </button>
+                        </form>
+                    @else
+                        <h6>Sepetinizde ürün bulunmamaktadır.</h6>
                     @endif
                 </div> <!-- end .tab-content -->
             </div>
