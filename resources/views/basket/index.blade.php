@@ -67,6 +67,7 @@
                             <p><strong>Toplam: </strong> ₺{{ $total }}</p>
                             <label for="table_no">Masa Numarası</label>
                             <input type="text" name="table_no" id="table_no">
+                            <input type="hidden" name="total" value="{{ $total }}">
                             <br>
                             <button type="submit">
                                 Sipariş Ver
