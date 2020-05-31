@@ -227,6 +227,21 @@ return [
         ],
 //        ['header' => 'account_settings'],
         [
+            'text' => 'Kategoriler',
+            'icon' => 'fas fa-fw fa-tag',
+            'submenu'  => [
+                [
+                    'text' => 'Kategori Ekle',
+                    'url' => 'admin/categories/create'
+                ],
+                [
+                    'text' => 'Kategoriler',
+                    'url' => 'admin/categories'
+                ]
+            ],
+
+        ],
+        [
             'text' => 'Ürünler',
             'icon' => 'fas fa-fw fa-pizza-slice',
             'submenu'  => [
