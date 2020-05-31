@@ -83,14 +83,14 @@
                         </div>
                     </div>
                 </form>
-                @if ($password_reset_url)
-                    <p class="mt-2 mb-1">
-                        <a href="{{ $password_reset_url }}">
-                            Şifremi Unuttum
+{{--                @if ($password_reset_url)--}}
+{{--                    <p class="mt-2 mb-1">--}}
+{{--                        <a href="{{ $password_reset_url }}">--}}
+{{--                            Şifremi Unuttum--}}
 {{--                            {{ __('adminlte::adminlte.i_forgot_my_password') }}--}}
-                        </a>
-                    </p>
-                @endif
+{{--                        </a>--}}
+{{--                    </p>--}}
+{{--                @endif--}}
 
 {{--                @if ($register_url)--}}
 {{--                    <p class="mb-0">--}}

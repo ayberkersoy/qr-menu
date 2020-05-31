@@ -8,7 +8,18 @@
     <div class="box">
         <div class="box-header with-border">
             <div class="box-body">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @include('notifications.success')
                 <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group">
                         <label for="name">Ürün Adı:</label>
                         <input type="text" class="form-control" id="name" name="name"
@@ -46,7 +57,7 @@
                     <div class="form-group">
                         <label for="image_url">Ürün Resmi:</label>
                         <input type="file" class="form-control" id="image_url" name="image"
-                               required placeholder=" Ürün resmini girin">
+                               placeholder="Ürün resmini girin">
                     </div>
 
                     <button class="btn btn-success" id="add" name="add">

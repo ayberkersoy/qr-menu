@@ -40,12 +40,13 @@ class ProductController extends Controller
             ]);
         }
 
-        return back();
+        return back()->with('success', 'Ürün eklendi.');
     }
 
     public function index()
     {
-
+        $product = Product::with('category')->get();
+        return view('admin.products.index', compact('product'));
     }
 
     public function edit(Product $product)
