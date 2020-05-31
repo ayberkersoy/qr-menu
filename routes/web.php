@@ -14,4 +14,5 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     Route::resource('products', 'ProductController');
     Route::resource('orders', 'OrderController');
+    Route::resource('categories', 'CategoryController');
 });
