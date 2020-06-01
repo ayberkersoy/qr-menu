@@ -45,22 +45,49 @@ class ProductController extends Controller
 
     public function index()
     {
-        $product = Product::with('category')->get();
-        return view('admin.products.index', compact('product'));
+        $products = Product::with('category')->paginate(10);
+        return view('admin.products.index', compact('products'));
     }
 
     public function edit(Product $product)
     {
-
+        return view('admin.products.edit', compact('product'));
     }
 
-    public function update(Product $product)
+    public function update(Product $product, Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'category_id' => 'required'
+        ]);
 
+        $product->update([
+            'category_id' => $request->category_id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'status' => $request->status
+        ]);
+
+        if($request->hasFile('image')) {
+            $path = $request->file('image')->store('products');
+            $image = $product->images()->latest();
+            Image::create([
+                'related_id' => $product->id,
+                'type' => Image::Product,
+                'order' => $image->order + 1,
+                'path' => $path
+            ]);
+        }
+
+        return back()->with('success', 'Ürün güncellendi.');
     }
 
     public function destroy(Product $product)
     {
-
+        $product->delete();
+        return back()->with('success', 'Ürün silindi.');
     }
 }
