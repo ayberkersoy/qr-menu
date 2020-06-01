@@ -29,4 +29,24 @@ class OrderController extends Controller
 
         return redirect()->route('home')->with('success', 'Siparişiniz alınmıştır.');
     }
+
+    public function index(Request $request)
+    {
+        $orders = Order::where('status', $request->status)->orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.orders.index', compact('orders'));
+    }
+
+    public function show(Order $order)
+    {
+        return view('admin.orders.show', compact('order'));
+    }
+
+    public function update(Order $order, Request $request)
+    {
+        $order->update([
+            'status' => Order::Sent
+        ]);
+
+        return back()->with('success', 'Sipariş güncellendi.');
+    }
 }
