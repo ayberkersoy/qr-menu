@@ -74,10 +74,11 @@ class ProductController extends Controller
         if($request->hasFile('image')) {
             $path = $request->file('image')->store('products');
             $image = $product->images()->latest();
+            $image->delete();
             Image::create([
                 'related_id' => $product->id,
                 'type' => Image::Product,
-                'order' => $image->order + 1,
+                'order' => 1,
                 'path' => $path
             ]);
         }
@@ -88,6 +89,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return back()->with('success', 'Ürün silindi.');
+        return redirect()->route('products.index')->with('success', 'Ürün silindi.');
     }
 }
