@@ -262,11 +262,11 @@ return [
             'submenu'  => [
                 [
                     'text' => 'Yeni Siparişler',
-                    'url' => 'admin/orders/new'
+                    'url' => 'admin/orders?status=100'
                 ],
                 [
                     'text' => 'Onaylanan Siparişler',
-                    'url' => 'admin/orders/old'
+                    'url' => 'admin/orders?status=200'
                 ]
             ],
 
