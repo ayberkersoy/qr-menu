@@ -25,7 +25,6 @@ class ProductController extends Controller
         $product = Product::create([
             'category_id' => $request->category_id,
             'name' => $request->name,
-            'description' => $request->description,
             'price' => $request->price,
             'status' => Product::Available
         ]);
@@ -58,7 +57,6 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'description' => 'required',
             'price' => 'required',
             'category_id' => 'required'
         ]);
