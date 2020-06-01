@@ -23,19 +23,19 @@
                 <div class="form-group">
                     <label for="name">Kategori Adı:</label>
                     <input type="text" class="form-control" id="name" name="name"
-                           required placeholder="Ürün adını girin">
+                           required placeholder="Kategori adını girin">
                 </div>
 
                 <div class="form-group">
                     <label for="description">Açıklama:</label>
                     <input type="text" class="form-control" id="description" name="description"
-                           required placeholder="Ürün açıklamasını girin">
+                           required placeholder="Kategori açıklamasını girin">
                 </div>
 
                 <div class="form-group">
                     <label for="image_url">Kategori Resmi:</label>
                     <input type="file" class="form-control" id="image_url" name="image"
-                           placeholder="Ürün resmini girin">
+                           placeholder="Kategori resmini girin">
                 </div>
 
                 <button class="btn btn-success" id="add" name="add">

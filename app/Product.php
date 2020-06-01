@@ -9,6 +9,11 @@ class Product extends Model
     const Available = 100;
     const Hidden = 200;
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function images()
     {
         return $this->hasMany(Image::class, 'related_id')
