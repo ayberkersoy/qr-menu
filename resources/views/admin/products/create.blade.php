@@ -29,7 +29,7 @@
                     <div class="form-group">
                         <label for="description">Açıklama:</label>
                         <input type="text" class="form-control" id="description" name="description"
-                               required placeholder="Ürün açıklamasını girin">
+                               placeholder="Ürün açıklamasını girin">
                     </div>
 
                     <div class="form-group">
