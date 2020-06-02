@@ -13,7 +13,8 @@ class OrderController extends Controller
         $order = Order::create([
             'table_no' => $request->table_no,
             'status' => Order::New,
-            'total' => $request->total
+            'total' => $request->total,
+            'note' => $request->note
         ]);
 
         $cart = session('cart');
