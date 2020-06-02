@@ -12,7 +12,7 @@
                                 <div class="item">
                                     <a href="#tab-{{ $category->id }}" role="tab" data-toggle="tab">
                                         @if(!empty($category->image))
-                                            <img src="{{ asset($category->image->path) }}" alt="" style="width: 75px !important; height: 50px !important;" width="75px" height="50px">
+                                            <img src="{{ asset($category->image->path) }}" alt="" style="width: 75px !important; height: 55px !important;" width="75px" height="50px">
                                         @endif
                                         <p>{{ $category->name }}</p>
                                     </a>
