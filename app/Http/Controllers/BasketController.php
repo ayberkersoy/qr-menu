@@ -26,7 +26,8 @@ class BasketController extends Controller
                 $request->product_id => [
                     "name" => $product->name,
                     "quantity" => $request->quantity,
-                    "price" => $product->price
+                    "price" => $product->price,
+                    "image" => $product->images->first() ? $product->images->first()->path : null
                 ]
             ];
             session()->put('cart', $cart);
@@ -45,7 +46,8 @@ class BasketController extends Controller
         $cart[$request->product_id] = [
             "name" => $product->name,
             "quantity" => $request->quantity,
-            "price" => $product->price
+            "price" => $product->price,
+            "image" => $product->images->first() ? $product->images->first()->path : null
         ];
         session()->put('cart', $cart);
 
