@@ -17,38 +17,40 @@
                             <div class="tab-pane fade in active" id="tab-{{ $id }}">
                                 <div class="all-menu-details menu-with-2grid thumb">
 {{--                                    <h5>{{ $details['name'] }}</h5>--}}
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                    <div class="row" style="border: 1px solid #222; border-radius: 5px; margin-right: 2px; margin-left: 2px; margin-top: 5px">
+                                        <div class="col-sm-12">
                                             <div class="item-list">
                                                 <div class="all-details">
                                                     <div class="visible-option">
                                                         <div class="details">
                                                             <h6>
+                                                                <img src="{{ $details['image'] }}" alt="" style="height: 70px">
                                                                 <a href="#">{{ $details['name'] }}</a>
-                                                                <span style="float: right;">₺{{ $details['price'] * $details['quantity'] }}</span>
+                                                                <span style="float: right; font-size: 24px">₺{{ $details['price'] * $details['quantity'] }}</span>
                                                             </h6>
                                                         </div>
                                                         <div class="qty-cart text-center">
-                                                            <form class="default-form" action="{{ route('basket.update', $id) }}" method="POST" style="float: left;">
-                                                                @method('PATCH')
-                                                                @csrf
-                                                                <label for="quantity">Porsiyon</label>
-                                                                <input type="hidden" name="product_id" value="{{ $id }}">
-                                                                <input type="number" step="0.5" placeholder="1" value="{{ $details['quantity'] }}" id="quantity" name="quantity">
-                                                                <button type="submit">
-                                                                    <i class="fa fa-refresh"></i>
-                                                                </button>
-                                                            </form>
-                                                            <form class="default-form" action="{{ route('basket.destroy', $id) }}" method="POST" style="float: left; margin-left:5px">
+                                                            <form class="default-form" action="{{ route('basket.destroy', $id) }}" method="POST" style="float: right; margin-left:5px">
                                                                 @csrf
                                                                 @method('DELETE')
-{{--                                                                <label for="quantity">Porsiyon</label>--}}
+                                                                {{--                                                                <label for="quantity">Porsiyon</label>--}}
                                                                 <input type="hidden" name="product_id" value="{{ $id }}">
-{{--                                                                <input type="number" step="0.5" placeholder="1" value="1" id="quantity" name="quantity">--}}
+                                                                {{--                                                                <input type="number" step="0.5" placeholder="1" value="1" id="quantity" name="quantity">--}}
                                                                 <button type="submit" onclick="confirm('Emin misiniz?')">
                                                                     <i class="fa fa-trash-o"></i>
                                                                 </button>
                                                             </form>
+                                                            <form class="default-form" action="{{ route('basket.update', $id) }}" method="POST" style="float: right;">
+                                                                @method('PATCH')
+                                                                @csrf
+                                                                <label for="quantity">Porsiyon</label>
+                                                                <input type="hidden" name="product_id" value="{{ $id }}">
+                                                                <input type="number" step="0.5" placeholder="1" value="{{ $details['quantity'] }}" id="quantity" name="quantity" style="width: 35px">
+                                                                <button type="submit">
+                                                                    <i class="fa fa-refresh"></i>
+                                                                </button>
+                                                            </form>
+
                                                         </div> <!-- end .qty-cart -->
                                                     </div> <!-- end .vsible-option -->
 
@@ -63,7 +65,7 @@
 
                             </div> <!-- end .tab-pane -->
                         @endforeach
-                        <p style="float:right"><strong>Toplam: ₺{{ $total }}</strong></p>
+
                         <form action="{{ route('order.store') }}" method="POST" style="margin-top: 20px;">
                             @csrf
 
@@ -75,6 +77,7 @@
                             <label for="note">Sipariş Notu</label>
                             <textarea name="note" id="note" class="form-control" cols="10" rows="3" placeholder="Sipariş notunuzu buraya yazabilirsiniz."></textarea>
                             <br>
+                            <p style="float:right"><strong>Toplam: ₺{{ $total }}</strong></p>
                             <button type="submit" class="btn btn-warning">
                                 Sipariş Ver
                             </button>
